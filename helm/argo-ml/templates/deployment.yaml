@@ -1,0 +1,66 @@
+{{- range $key, $component := .Values.components }}
+{{- if $component.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $component.name | default $key }}
+  namespace: {{ $component.namespace | default "mlops" }}
+  labels:
+    app: {{ $component.name | default $key }}
+spec:
+  replicas: {{ $component.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ $component.name | default $key }}
+  template:
+    metadata:
+      labels:
+        app: {{ $component.name | default $key }}
+    spec:
+      containers:
+        - name: {{ $component.name | default $key }}
+          image: {{ $component.image | default "minio/minio" }}
+          imagePullPolicy: {{ $component.imagePullPolicy | default "IfNotPresent" }}
+          {{- if $component.args }}
+          args: 
+            {{- toYaml $component.args | nindent 12 }}
+          {{- end }}
+          env:
+            {{- range $envName, $envValue := $component.env }}
+            - name: {{ $envName }}
+              value: "{{ $envValue }}"
+            {{- end }}
+          ports:
+            {{- range $portName, $portValue := $component.ports }}
+            - name: {{ $portName }}
+              containerPort: {{ $portValue }}
+            {{- end }}
+          {{- if $component.volumeMounts }}
+          volumeMounts:
+            {{- toYaml $component.volumeMounts | nindent 12 }}
+          {{- end }}
+      {{- if $component.volumes }}
+      volumes:
+        {{- toYaml $component.volumes | nindent 8 }}
+      {{- end }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $component.name | default $key }}
+  namespace: {{ $component.namespace | default "mlops" }}
+spec:
+  type: {{ $component.serviceType | default "ClusterIP" }}
+  selector:
+    app: {{ $component.name | default $key }}
+  ports:
+    {{- range $portName, $portValue := $component.ports }}
+    - name: {{ $portName }}
+      port: {{ $portValue }}
+      targetPort: {{ $portValue }}
+      {{- if $component.nodePorts }}
+      nodePort: {{ index $component.nodePorts $portName | default "" }}
+      {{- end }}
+    {{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,27 @@
+components:
+  mnistApp:
+    enabled: true
+    name: mnist-api
+    namespace: mlops
+    replicas: 1
+      #    image: mnist-app:latest
+    image: mnist-app:v2
+    imagePullPolicy: Never
+    ports:
+      api: 8000
+    nodePorts:
+      api: 30800
+    serviceType: NodePort
+    resources:
+      requests:
+        memory: "512Mi"
+        cpu: "500m"
+      limits:
+        memory: "1Gi"
+        cpu: "1000m"
+    ingress:                  # 🔹 блок Ingress
+      enabled: true
+      className: nginx
+      hosts:
+        - host: mnist-api.local
+          port: 8000
