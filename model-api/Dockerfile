@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir \
     boto3 \
     pydantic
 
-COPY app.py .
+COPY app-latest.py .
 COPY model.py .
 
 EXPOSE 8000
