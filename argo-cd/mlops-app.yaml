@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mlops-app
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/EdgarHarutyunyan2026/ML-Argo-CD.git
+    targetRevision: HEAD
+    path: helm/argo-ml 
+    helm:
+      valueFiles:
+        - values/minio-values.yaml
+        - values/mlflow-values.yaml
+        - values/mnist-app-values.yaml
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

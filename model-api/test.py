@@ -10,7 +10,8 @@ transform = transforms.Compose([
 
 # Укажи полный путь где уже скачан MNIST
 dataset = torchvision.datasets.MNIST(
-    root="/home/edgar/DevOps/MLOps/k8s/pytorch/model/data", 
+    #root="/home/edgar/DevOps/MLOps/k8s/pytorch/model/data", 
+    root="/home/edgar/DevOps/ML-Argo-CD/model-train/data", 
     train=False,
     transform=transform,
     download=True

@@ -9,13 +9,14 @@ transform = transforms.Compose([
 
 dataset = torchvision.datasets.MNIST(
     #root="/home/edgar/DevOps/MLOps/k8s/pytorch/model/data/",
-    root="/home/edgar/DevOps/ML-api/Argo-CD/model-train/data/",
+    #root="/home/edgar/DevOps/ML-api/Argo-CD/model-train/data/",
+    root="/home/edgar/DevOps/ML-Argo-CD/model-train/data/",
     train=False,
     transform=transform,
     download=True
 )
 
-image, label = dataset[37]
+image, label = dataset[18]
 pixels = image.numpy().flatten().tolist()
 
 #url = "http://192.168.49.2/predict"

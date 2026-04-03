@@ -14,10 +14,8 @@ from model import MyNeuralNet
 # -----------------------
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
 os.environ["AWS_SECRET_ACCESS_KEY"] = "minioadmin"
-#os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://192.168.49.2:30900"
 os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://minio-api.local"
 
-#mlflow.set_tracking_uri("http://192.168.49.2:30000")  # NodePort MLflow UI
 mlflow.set_tracking_uri("http://mlflow.local")
 
 # -----------------------
