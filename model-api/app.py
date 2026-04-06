@@ -37,7 +37,7 @@ def load_model_from_mlflow():
     run_id = runs[0].info.run_id
     print(f"Найден run: {run_id}")
 
-    model_uri = f"runs:/{run_id}/model-v5"
+    model_uri = f"runs:/{run_id}/model-v7"
     print(f"Загружаем модель из: {model_uri}")
 
     model = mlflow.pytorch.load_model(model_uri, map_location=device)
