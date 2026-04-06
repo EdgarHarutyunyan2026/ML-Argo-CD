@@ -8,7 +8,7 @@ from typing import List
 from model import MyNeuralNet
 
 
-MODEL_NAME="model-v3"
+MODEL_NAME="model-v1"
 
 # Внутри minikube используем cluster-internal адреса
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
