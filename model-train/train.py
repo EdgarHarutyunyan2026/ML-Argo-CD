@@ -27,9 +27,9 @@ print(f"Using device: {device}")
 # -----------------------
 # Гиперпараметры
 # -----------------------
-EPOCHS = 1
+EPOCHS = 10
 BATCH_SIZE = 64
-LR = 0.01
+LR = 0.001
 
 # -----------------------
 # Данные
@@ -91,7 +91,7 @@ with mlflow.start_run():
 
     mlflow.pytorch.log_model(
         model,
-        name="model-v5"
+        name="model-v6"
     )
 
     print("Model logged to MLflow with artifacts in MinIO!")
