@@ -7,6 +7,9 @@ from pydantic import BaseModel
 from typing import List
 from model import MyNeuralNet
 
+
+MODEL_NAME="model-v3"
+
 # Внутри minikube используем cluster-internal адреса
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
 os.environ["AWS_SECRET_ACCESS_KEY"] = "minioadmin"
@@ -37,7 +40,8 @@ def load_model_from_mlflow():
     run_id = runs[0].info.run_id
     print(f"Найден run: {run_id}")
 
-    model_uri = f"runs:/{run_id}/model-v7"
+    #model_uri = f"runs:/{run_id}/model-v7"
+    model_uri = f"runs:/{run_id}/{MODEL_NAME}"
     print(f"Загружаем модель из: {model_uri}")
 
     model = mlflow.pytorch.load_model(model_uri, map_location=device)

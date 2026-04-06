@@ -4,7 +4,7 @@ components:
     name: mnist-api
     namespace: mlops
     replicas: 1
-    image: mnist-app:v7
+    image: mnist-app:v3
     imagePullPolicy: Never
     ports:
       api: 8000

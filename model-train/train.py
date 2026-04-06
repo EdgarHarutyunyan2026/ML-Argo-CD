@@ -27,7 +27,7 @@ print(f"Using device: {device}")
 # -----------------------
 # Гиперпараметры
 # -----------------------
-EPOCHS = 11
+EPOCHS = 10
 BATCH_SIZE = 64
 LR = 0.001
 
@@ -52,6 +52,7 @@ optimizer = optim.Adam(model.parameters(), lr=LR)
 # MLflow Experiment
 # -----------------------
 experiment_name = "mnist_classification"
+MODEL_NAME = "model-v3"
 mlflow.set_experiment(experiment_name)
 
 with mlflow.start_run():
@@ -91,7 +92,8 @@ with mlflow.start_run():
 
     mlflow.pytorch.log_model(
         model,
-        name="model-v7"
+       # name="model-v3"
+        name=MODEL_NAME
     )
 
     print("Model logged to MLflow with artifacts in MinIO!")
