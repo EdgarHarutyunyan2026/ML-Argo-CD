@@ -7,39 +7,48 @@ from pydantic import BaseModel
 from typing import List
 
 # -------------------------
-# Настройки окружения для minikube / MLflow
+# Настройки окружения для Minikube / MLflow
 # -------------------------
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
 os.environ["AWS_SECRET_ACCESS_KEY"] = "minioadmin"
 os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://minio.mlops.svc.cluster.local:9000"
 
-# MLflow tracking server (cluster-internal DNS)
 mlflow.set_tracking_uri("http://mlflow.local")
 
-# Устройство для PyTorch
-device = torch.device("cpu")  # minikube без GPU
+# Устройство PyTorch
+device = torch.device("cpu")  # Minikube без GPU
 
 # -------------------------
-# Функция загрузки последней модели из MLflow
+# Загрузка последней модели из MLflow
 # -------------------------
-def load_model_from_mlflow():
+def load_latest_model(experiment_name: str = "mnist_classification"):
     print("Подключаемся к MLflow...")
+    client = mlflow.tracking.MlflowClient()
 
-    # Загружаем модель из stage "Production" (или "Latest", если нет stage)
-    model_uri = "models:/mnist_classification/Production"
-    print(f"Загружаем модель из MLflow: {model_uri}")
+    experiment = client.get_experiment_by_name(experiment_name)
+    if experiment is None:
+        raise RuntimeError(f"Эксперимент '{experiment_name}' не найден")
 
-    try:
-        model = mlflow.pytorch.load_model(model_uri, map_location=device)
-        model.eval()
-        print("Модель успешно загружена!")
-        return model
-    except Exception as e:
-        print(f"Ошибка при загрузке модели: {e}")
-        raise RuntimeError(f"Не удалось загрузить модель из MLflow: {e}")
+    runs = client.search_runs(
+        experiment_ids=[experiment.experiment_id],
+        order_by=["start_time DESC"],
+        max_results=1
+    )
+
+    if not runs:
+        raise RuntimeError(f"Нет запусков в эксперименте '{experiment_name}'")
+
+    run_id = runs[0].info.run_id
+    model_uri = f"runs:/{run_id}/model-v2"
+    print(f"Загружаем модель из {model_uri} ...")
+
+    model = mlflow.pytorch.load_model(model_uri, map_location=device)
+    model.eval()
+    print("Модель успешно загружена!")
+    return model
 
 # Загружаем модель один раз при старте API
-model = load_model_from_mlflow()
+model = load_latest_model()
 
 # -------------------------
 # FastAPI

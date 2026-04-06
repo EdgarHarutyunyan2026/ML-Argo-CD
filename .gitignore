@@ -1,2 +1,3 @@
 model-train/data
 model-train/__pycache__
+model-train/mlflow.db

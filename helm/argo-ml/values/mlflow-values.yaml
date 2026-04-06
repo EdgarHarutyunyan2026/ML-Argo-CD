@@ -13,13 +13,17 @@ components:
       - "--host=0.0.0.0"
       - "--port=5000"
       - "--allowed-hosts=mlflow.local"
+      - "--cors-allowed-origins=http://mlflow.local"
         #      - "--allowed-hosts=*"
     env:
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
         #      MLFLOW_S3_ENDPOINT_URL: http://minio.mlops.svc.cluster.local:9000
-      MLFLOW_S3_ENDPOINT_URL: http://minio.local
+      MLFLOW_S3_ENDPOINT_URL: http://minio-api.local
       AWS_S3_FORCE_PATH_STYLE: "true"
+      #
+      MLFLOW_SERVER_ENABLE_CORS: "true"
+      MLFLOW_SERVER_CORS_ORIGINS: http://mlflow.local
     ports:
       web: 5000
     serviceType: ClusterIP
