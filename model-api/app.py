@@ -9,6 +9,7 @@ from model import MyNeuralNet
 
 
 MODEL_NAME="model-v1"
+EXPERIMENT_NAME="mnist_classification"
 
 # Внутри minikube используем cluster-internal адреса
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
@@ -24,7 +25,8 @@ def load_model_from_mlflow():
     print("Подключаемся к MLflow...")
     client = mlflow.tracking.MlflowClient()
 
-    experiment = client.get_experiment_by_name("mnist_classification")
+    #experiment = client.get_experiment_by_name("mnist_classification")
+    experiment = client.get_experiment_by_name(EXPERIMENT_NAME)
     if experiment is None:
         raise Exception("Эксперимент не найден")
 

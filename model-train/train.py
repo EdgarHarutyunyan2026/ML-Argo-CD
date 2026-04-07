@@ -27,7 +27,7 @@ print(f"Using device: {device}")
 # -----------------------
 # Гиперпараметры
 # -----------------------
-EPOCHS = 20
+EPOCHS = 10
 BATCH_SIZE = 64
 LR = 0.001
 
@@ -92,7 +92,6 @@ with mlflow.start_run():
 
     mlflow.pytorch.log_model(
         model,
-       # name="model-v3"
         name=MODEL_NAME
     )
 
