@@ -16,7 +16,7 @@ dataset = torchvision.datasets.MNIST(
     download=True
 )
 
-image, label = dataset[45]
+image, label = dataset[234]
 pixels = image.numpy().flatten().tolist()
 
 #response = requests.post("http://localhost:8000/predict", json={"pixels": pixels})

@@ -52,7 +52,7 @@ optimizer = optim.Adam(model.parameters(), lr=LR)
 # MLflow Experiment
 # -----------------------
 experiment_name = "mnist_classification"
-MODEL_NAME = "model-v5"
+MODEL_NAME = "model-v4"
 mlflow.set_experiment(experiment_name)
 
 with mlflow.start_run():

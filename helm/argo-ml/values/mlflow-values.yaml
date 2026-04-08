@@ -18,7 +18,6 @@ components:
     env:
       AWS_ACCESS_KEY_ID: minioadmin
       AWS_SECRET_ACCESS_KEY: minioadmin
-        #      MLFLOW_S3_ENDPOINT_URL: http://minio.mlops.svc.cluster.local:9000
       MLFLOW_S3_ENDPOINT_URL: http://minio-api.local
       AWS_S3_FORCE_PATH_STYLE: "true"
       #
@@ -33,20 +32,3 @@ components:
       hosts:
         - host: mlflow.local
           port: 5000
-#components:
-#  mlflow:
-#    enabled: true
-#    name: mlflow
-#    namespace: mlops
-#    replicas: 1
-#    image: mlflow-local:v1
-#    env:
-#      AWS_ACCESS_KEY_ID: minioadmin
-#      AWS_SECRET_ACCESS_KEY: minioadmin
-#      MLFLOW_S3_ENDPOINT_URL: http://minio.mlops.svc.cluster.local:9000
-#    ports:
-#      web: 5000
-#    nodePorts:
-#      web: 30000
-#    serviceType: NodePort
-#
