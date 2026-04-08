@@ -27,9 +27,9 @@ print(f"Using device: {device}")
 # -----------------------
 # Гиперпараметры
 # -----------------------
-EPOCHS = 10
+EPOCHS = 1
 BATCH_SIZE = 64
-LR = 0.001
+LR = 0.1
 
 # -----------------------
 # Данные
@@ -52,7 +52,7 @@ optimizer = optim.Adam(model.parameters(), lr=LR)
 # MLflow Experiment
 # -----------------------
 experiment_name = "mnist_classification"
-MODEL_NAME = "model-v6"
+MODEL_NAME = "model-v7"
 mlflow.set_experiment(experiment_name)
 
 with mlflow.start_run():
