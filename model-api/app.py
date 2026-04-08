@@ -8,7 +8,7 @@ from typing import List
 from model import MyNeuralNet
 
 
-MODEL_NAME="model-v4"
+MODEL_NAME="model-v5"
 EXPERIMENT_NAME="mnist_classification"
 
 # Внутри minikube используем cluster-internal адреса

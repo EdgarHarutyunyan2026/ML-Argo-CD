@@ -18,7 +18,8 @@ spec:
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: default
+    namespace: mlops
+      #    namespace: default
 
   syncPolicy:
     automated:
