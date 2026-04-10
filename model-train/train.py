@@ -16,6 +16,15 @@ os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"
 os.environ["AWS_SECRET_ACCESS_KEY"] = "minioadmin"
 os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://minio-api.local"
 
+# Name to Save Model in Mlflow
+experiment_name = "mnist_classification"
+MODEL_NAME = "model-v12"
+# Гиперпараметры
+EPOCHS = 25
+BATCH_SIZE = 64
+LR = 0.001
+
+
 mlflow.set_tracking_uri("http://mlflow.local")
 
 # -----------------------
@@ -23,13 +32,6 @@ mlflow.set_tracking_uri("http://mlflow.local")
 # -----------------------
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
-
-# -----------------------
-# Гиперпараметры
-# -----------------------
-EPOCHS = 10
-BATCH_SIZE = 64
-LR = 0.001
 
 # -----------------------
 # Данные
@@ -51,8 +53,6 @@ optimizer = optim.Adam(model.parameters(), lr=LR)
 # -----------------------
 # MLflow Experiment
 # -----------------------
-experiment_name = "mnist_classification"
-MODEL_NAME = "model-v2"
 mlflow.set_experiment(experiment_name)
 
 with mlflow.start_run():

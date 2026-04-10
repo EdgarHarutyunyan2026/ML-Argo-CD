@@ -8,8 +8,10 @@ from typing import List
 from model import MyNeuralNet
 
 
-MODEL_NAME="model-v2"
-EXPERIMENT_NAME="mnist_classification"
+#MODEL_NAME="model-v2"
+#EXPERIMENT_NAME="mnist_classification"
+MODEL_NAME = os.getenv("MODEL_NAME", "model-v2")
+EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", "mnist_classification")
 
 # Внутри minikube используем cluster-internal адреса
 os.environ["AWS_ACCESS_KEY_ID"] = "minioadmin"

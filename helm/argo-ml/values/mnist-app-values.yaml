@@ -4,8 +4,11 @@ components:
     name: mnist-api
     namespace: mlops
     replicas: 2
-    image: mnist-app:v2
-    imagePullPolicy: Never
+    image: edo1997edo/model-api:v2
+    imagePullPolicy: IfNotPresent
+    env:
+      MODEL_NAME: "model-v12"
+      EXPERIMENT_NAME: "mnist_classification"
     ports:
       api: 8000
     nodePorts:

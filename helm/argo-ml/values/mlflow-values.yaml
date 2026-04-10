@@ -4,7 +4,7 @@ components:
     name: mlflow
     namespace: mlops
     replicas: 1
-    image: mlflow-local:v2
+    image: edo1997edo/mlflow:v1
     command: ["mlflow"]
     args:
       - "server"
