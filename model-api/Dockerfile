@@ -16,9 +16,9 @@ RUN pip install --no-cache-dir \
     boto3 \
     pydantic
 
-COPY app.py .
+COPY app-version.py .
 COPY model.py .
 
 EXPOSE 8000
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "app-version.py:app", "--host", "0.0.0.0", "--port", "8000"]
