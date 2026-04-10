@@ -8,8 +8,6 @@ from typing import List
 from model import MyNeuralNet
 
 
-#MODEL_NAME="model-v2"
-#EXPERIMENT_NAME="mnist_classification"
 MODEL_NAME = os.getenv("MODEL_NAME", "model-v2")
 EXPERIMENT_NAME = os.getenv("EXPERIMENT_NAME", "mnist_classification")
 
