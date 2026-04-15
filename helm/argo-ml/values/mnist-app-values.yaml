@@ -7,7 +7,7 @@ components:
     image: edo1997edo/model-api:v3
     imagePullPolicy: IfNotPresent
     env:
-      MODEL_NAME: "model-v1"
+      MODEL_NAME: "model-v2"
       EXPERIMENT_NAME: "mnist_classification"
     ports:
       api: 8000
