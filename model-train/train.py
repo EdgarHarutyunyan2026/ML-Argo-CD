@@ -20,9 +20,9 @@ os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://minio-api.local"
 experiment_name = "mnist_classification"
 MODEL_NAME = "model-v1"
 # Гиперпараметры
-EPOCHS = 25
+EPOCHS = 2
 BATCH_SIZE = 64
-LR = 0.001
+LR = 0.1
 
 
 mlflow.set_tracking_uri("http://mlflow.local")
