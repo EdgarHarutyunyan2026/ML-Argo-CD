@@ -4,7 +4,7 @@ components:
     name: mnist-api
     namespace: mlops
     replicas: 2
-    image: edo1997edo/model-api:v2
+    image: edo1997edo/model-api:v3
     imagePullPolicy: IfNotPresent
     env:
       MODEL_NAME: "model-v2"
