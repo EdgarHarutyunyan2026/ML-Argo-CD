@@ -14,7 +14,7 @@ dataset = torchvision.datasets.MNIST(
     download=True
 )
 
-image, label = dataset[7]
+image, label = dataset[77]
 pixels = image.numpy().flatten().tolist()
 
 url = "http://mnist-api.local/predict"

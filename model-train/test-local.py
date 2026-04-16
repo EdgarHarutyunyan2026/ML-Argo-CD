@@ -15,7 +15,7 @@ os.environ["MLFLOW_S3_ENDPOINT_URL"] = "http://minio-api.local"
 mlflow.set_tracking_uri("http://mlflow.local")
 
 EXPERIMENT_NAME = "mnist_classification"
-MODEL_NAME = "model-v2" 
+MODEL_NAME = "model-v1" 
 
 # -----------------------
 # Device
