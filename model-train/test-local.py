@@ -64,7 +64,7 @@ transform = transforms.Compose([
 ])
 
 dataset = torchvision.datasets.MNIST(root="./data", train=False, transform=transform, download=True)
-image, label = dataset[7]
+image, label = dataset[71]
 
 with torch.no_grad():
     input_tensor = image.unsqueeze(0).to(device)
